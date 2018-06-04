@@ -1,6 +1,8 @@
 #include <gtk/gtk.h>
 #include <string.h>
 
+GtkWidget *currentplayerlabel;
+GtkWidget *tossresultlabel;
 GtkButton *start_button; 
 GtkButton *toss_button;
 GtkButton *exit_button;
@@ -83,7 +85,6 @@ GtkButton *click_button76;
        
 int main(int argc, char *argv[])
 {
-	char buff[5];
     GtkWidget       *window;
     GtkBuilder      *builder;
     gtk_init(&argc, &argv);
@@ -92,10 +93,9 @@ int main(int argc, char *argv[])
     gtk_builder_add_from_file (builder, "glade/window_main.glade", NULL);
  
     window = GTK_WIDGET(gtk_builder_get_object(builder, "window_main"));
-	/*for(int i=1;i<73;i++){
-		itoa(i, buff, 10);
-		click_button[i] = GTK_BUTTON(gtk_builder_get_object(builder, buff));
-	};*/
+
+	currentplayerlabel = GTK_WIDGET(gtk_builder_get_object(builder, "Current"));
+	tossresultlabel = GTK_WIDGET(gtk_builder_get_object(builder, "Result"));
 	click_button1 = GTK_BUTTON (gtk_builder_get_object (builder, "1"));
 	click_button2 = GTK_BUTTON (gtk_builder_get_object (builder, "2"));
 	click_button3 = GTK_BUTTON (gtk_builder_get_object (builder, "3"));
@@ -226,9 +226,27 @@ void on_2_clicked(GtkWidget *click_button2,
 void on_3_clicked(GtkWidget *click_button1,
                      gpointer   user_data)
 {
-    gtk_button_set_image (click_button2,NULL); //remove horse from tile
+    gtk_button_set_image (click_button2,NULL); //remove horse from button2
+    gtk_label_set_text(GTK_LABEL(tossresultlabel), "Tested"); // Change text on Result Label 
     
 }
+void on_Play_clicked(GtkWidget *click_button1,
+                     gpointer   user_data)
+{
+  
+    
+}
+void on_Toss_clicked(GtkWidget *click_button1,
+                     gpointer   user_data)
+{
+    
+}
+void on_Exit_clicked(GtkWidget *click_button1,
+                     gpointer   user_data)
+{
+    
+}
+
 
 // called when window is closed
 void on_window_main_destroy()
